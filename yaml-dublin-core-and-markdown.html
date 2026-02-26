@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://dasuttles.github.io/NeoArchivist/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://dasuttles.github.io/NeoArchivist/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://dasuttles.github.io/NeoArchivist/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://dasuttles.github.io/NeoArchivist/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://dasuttles.github.io/NeoArchivist/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Dallas A Suttles" />
+<meta name="description" content="YAML Dublin Core and Markdown Closing Markdown&#39;s metadata gap with Dublin Core and YAML frontmatter In my last post, I made the case that Markdown&#39;s plain-text simplicity gives it real staying power as a preservation format — human-readable, software-agnostic, and likely to remain accessible decades from now. But I also flagged …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="NeoArchivist"/>
+  <meta property="og:title" content="YAML Dublin Core and Markdown"/>
+  <meta property="og:description" content="YAML Dublin Core and Markdown Closing Markdown&#39;s metadata gap with Dublin Core and YAML frontmatter In my last post, I made the case that Markdown&#39;s plain-text simplicity gives it real staying power as a preservation format — human-readable, software-agnostic, and likely to remain accessible decades from now. But I also flagged …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://dasuttles.github.io/NeoArchivist/yaml-dublin-core-and-markdown.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-02-25 00:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://dasuttles.github.io/NeoArchivist/author/dallas-a-suttles.html">
+  <meta property="article:section" content="misc"/>
+  <meta property="og:image" content="https://dasuttles.github.io/NeoArchivist/images/dasuttles_profile_2025.png">
+
+  <title>NeoArchivist &ndash; YAML Dublin Core and Markdown</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://dasuttles.github.io/NeoArchivist/">
+      <img src="https://dasuttles.github.io/NeoArchivist/images/dasuttles_profile_2025.png" alt="" title="">
+    </a>
+
+    <h1>
+      <a href="https://dasuttles.github.io/NeoArchivist/"></a>
+    </h1>
+
+    <p>Archiving the 21st Century</p>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="https://www.valdosta.edu/archives" >Valdosta State Archives</a>
+          </li>
+          <li>
+            <a target="_self" href="https://archives.valdosta.edu/indexes" >Archives Indexes</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/dasuttles"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-twitter"
+           href="https://twitter.com/dasuttles"
+           target="_blank">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="yaml-dublin-core-and-markdown">YAML Dublin Core and Markdown</h1>
+    <p>
+      Posted on Wed 25 February 2026 in <a href="https://dasuttles.github.io/NeoArchivist/category/misc.html">misc</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <h1>YAML Dublin Core and Markdown</h1>
+<blockquote>
+<p>Closing Markdown's metadata gap with Dublin Core and YAML frontmatter</p>
+</blockquote>
+<p>In my last post, I made the case that Markdown's plain-text simplicity gives it real staying power as a preservation format — human-readable, software-agnostic, and likely to remain accessible decades from now. But I also flagged a significant weakness: <strong>Markdown has no native mechanism for metadata</strong>. No author field, no date, no rights statement, no subject headings. For archivists, that's not a minor inconvenience — it's a dealbreaker. A document without provenance is just an orphan. This post is about how we can fix that gap using two technologies that already exist, work well together, and align with established archival practice: YAML frontmatter and Dublin Core.</p>
+<h2>Markdown was never designed to describe itself</h2>
+<p>John Gruber created Markdown in 2004 as a text-to-HTML conversion tool for web writers. Its purpose was formatting content — paragraphs, headers, links, emphasis — not describing it. The original specification says nothing about metadata. Neither does CommonMark, the most serious effort to formalize Markdown syntax. John MacFarlane, CommonMark's creator, stated directly on the project's discussion forum that "front matter is not going to be part of the spec," adding that applications should handle metadata extraction on their own. The Library of Congress lists plain text as an "acceptable" digital preservation format, but not a "preferred" one, partly because it lacks self-documenting metadata. The Digital Preservation Coalition makes the same point: ideally, formats should "allow for the inclusion of internal metadata" so content and description are never separated.</p>
+<p>So if we want to use Markdown in archival workflows — and there are compelling reasons to do so — we need a metadata layer.</p>
+<h2>YAML frontmatter fills the gap, imperfectly but practically</h2>
+<p>YAML frontmatter is a block of structured key-value metadata placed at the very top of a Markdown file, fenced between triple dashes (<code>---</code>). Jekyll, the static site generator, popularized this convention around 2008, and it has since been adopted by Hugo, Pandoc, Obsidian, Gatsby, Eleventy, and dozens of other tools. It looks like this: a few lines of human-readable data — title, author, date, tags — sitting above the document content, parseable by machines but perfectly legible to a person reading the raw file.</p>
+<p>The critical thing to understand is that YAML frontmatter is a <strong>convention, not a specification</strong>. GitHub's own documentation describes it as "an authoring convention popularized by Jekyll." It is not part of CommonMark, not part of any Markdown standard, and different tools handle it differently. That matters, and I'll return to it. But as a practical, widely supported method for embedding metadata in plain-text files, it is the best option we have.</p>
+<h2>Dublin Core gives YAML frontmatter a proper vocabulary</h2>
+<p>The missing piece is a controlled vocabulary — a standard set of metadata fields with agreed-upon definitions. This is exactly what the <strong>Dublin Core Metadata Element Set</strong> provides. Developed in 1995 at a workshop in Dublin, Ohio, and now maintained by the Dublin Core Metadata Initiative under ASIS&amp;T, Dublin Core defines <strong>15 core elements</strong>: Title, Creator, Subject, Description, Publisher, Contributor, Date, Type, Format, Identifier, Source, Language, Relation, Coverage, and Rights. It is codified as <strong>ISO 15836-1:2017</strong>, required as the baseline format by OAI-PMH (the protocol underpinning most institutional repository harvesting), and used natively by platforms like DSpace, Fedora, and Omeka. Each element is optional, repeatable, and intentionally broad enough to describe resources across domains.</p>
+<p>When you combine Dublin Core's standardized vocabulary with YAML frontmatter's embeddable structure, you get something genuinely useful: a <strong>self-describing, plain-text archival document</strong> with metadata that any archivist or system can interpret.</p>
+<h2>Institutions are already doing this</h2>
+<p>This is not purely theoretical. Chris Diaz at Northwestern University Libraries published a workflow in the <em>Code4Lib Journal</em> (Issue 42, 2018) that explicitly maps YAML frontmatter fields in Jekyll-based Markdown files to Dublin Core <code>&lt;meta&gt;</code> tags in HTML output, alongside Google Scholar and Open Graph metadata — all generated from the same YAML source. Northwestern's <strong>Lantern</strong> project, an open-source Pandoc-based OER publishing toolkit documented in <em>Code4Lib Journal</em> Issue 53, uses a <code>metadata.yml</code> file with bibliographic fields that directly parallel Dublin Core elements. At Virginia Tech, the <strong>Caleb Pungowiyi Papers Rematriation Project</strong> used Obsidian — which stores notes as Markdown with YAML frontmatter — to create structured archival metadata for Indigenous cultural materials. Even DCMI itself migrated its website to Hugo with Markdown and YAML in 2017.</p>
+<h2>Pandoc is the critical bridge</h2>
+<p><strong>Pandoc</strong> makes this approach genuinely powerful by providing explicit, built-in Dublin Core support. When converting Markdown to EPUB, Pandoc maps YAML metadata fields directly to Dublin Core elements in the OPF package file: <code>title</code> becomes <code>&lt;dc:title&gt;</code>, <code>creator</code> becomes <code>&lt;dc:creator&gt;</code>, <code>rights</code> becomes <code>&lt;dc:rights&gt;</code>, and so on across all 15 elements. Pandoc also supports structured values — you can specify identifier schemes (ISBN, DOI, OCLC), creator roles (author, editor using MARC relators), and subject authorities (LCSH, DDC). This means a single YAML frontmatter block can serve as the metadata source for HTML pages, PDF documents, and standards-compliant EPUBs, all from one Markdown file.</p>
+<h2>The limitations are real and should be stated honestly</h2>
+<p>YAML frontmatter has no formal validation mechanism. There is no schema enforcement ensuring your Dublin Core fields are correctly named or properly formatted. The YAML specification itself is notoriously tricky — the "Norway problem," where the country code <code>NO</code> is silently parsed as boolean <code>false</code>, still persists in major parsing libraries as of early 2026. Different tools expect different field names (<code>author</code> vs. <code>creator</code>, <code>date</code> vs. <code>published</code>), and a CommonMark parser that doesn't recognize frontmatter will interpret the opening <code>---</code> as a thematic break, mangling your metadata entirely. This approach is a pragmatic bridge, not a replacement for METS, PREMIS, or EAD in formal preservation systems.</p>
+<h2>A practical starting point for archivists</h2>
+<p>Here is a sample YAML frontmatter block implementing Dublin Core elements that I would recommend as a starting template for archival Markdown documents:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">dc.title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Correspondence</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Maria</span><span class="nv"> </span><span class="s">Torres,</span><span class="nv"> </span><span class="s">1943–1947&quot;</span>
+<span class="nt">dc.creator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Torres,</span><span class="nv"> </span><span class="s">Maria&quot;</span>
+<span class="nt">dc.subject</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;World</span><span class="nv"> </span><span class="s">War,</span><span class="nv"> </span><span class="s">1939-1945</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">Personal</span><span class="nv"> </span><span class="s">narratives&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;Mexican</span><span class="nv"> </span><span class="s">Americans</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">Correspondence&quot;</span>
+<span class="nt">dc.description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Letters</span><span class="nv"> </span><span class="s">written</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">Maria</span><span class="nv"> </span><span class="s">Torres</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">family</span><span class="nv"> </span><span class="s">members</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">WWII.&quot;</span>
+<span class="nt">dc.publisher</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;University</span><span class="nv"> </span><span class="s">Special</span><span class="nv"> </span><span class="s">Collections&quot;</span>
+<span class="nt">dc.date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1943/1947&quot;</span>
+<span class="nt">dc.type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Text&quot;</span>
+<span class="nt">dc.format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;text/markdown&quot;</span>
+<span class="nt">dc.identifier</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SC-2024-0047&quot;</span>
+<span class="nt">dc.language</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;en&quot;</span>
+<span class="nt">dc.rights</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;This</span><span class="nv"> </span><span class="s">material</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">public</span><span class="nv"> </span><span class="s">domain.&quot;</span>
+<span class="nt">dc.source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Maria</span><span class="nv"> </span><span class="s">Torres</span><span class="nv"> </span><span class="s">Papers,</span><span class="nv"> </span><span class="s">Box</span><span class="nv"> </span><span class="s">3,</span><span class="nv"> </span><span class="s">Folder</span><span class="nv"> </span><span class="s">12&quot;</span>
+<span class="nt">dc.coverage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;United</span><span class="nv"> </span><span class="s">States</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">Texas&quot;</span>
+<span class="nn">---</span>
+</code></pre></div>
+
+<p>Using the <code>dc.</code> prefix is deliberate — it signals to any reader or downstream system that these fields follow the Dublin Core schema rather than an ad hoc convention. Quote your string values. Use ISO 8601 or EDTF for dates. Use LCSH or AAT for subject terms where possible. And document your local conventions in a README alongside your files, because without a formal schema, human documentation is your validation layer.</p>
+<p>Markdown's durability as plain text is real. Dublin Core's interoperability as a metadata standard is proven. YAML frontmatter's role as a bridge between them is imperfect but practical, widely supported, and — for many of us working in special collections — immediately usable. The formal preservation infrastructure of our institutions will continue to rely on XML-based standards and repository platforms. But for the working notes, transcriptions, finding aid drafts, and descriptive documents that live in our daily workflows, embedding Dublin Core in YAML is a small discipline that makes those files significantly more discoverable, portable, and archivally responsible.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy;  </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " NeoArchivist ",
+  "url" : "https://dasuttles.github.io/NeoArchivist",
+  "image": "https://dasuttles.github.io/NeoArchivist/images/dasuttles_profile_2025.png",
+  "description": ""
+}
+</script>
+</body>
+</html>
